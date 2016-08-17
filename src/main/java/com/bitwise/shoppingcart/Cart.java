@@ -9,16 +9,19 @@ import java.util.List;
 public class Cart {
     private List<Product> cartItems = new ArrayList<Product>();
 
-    public void addProduct(int pid, List<Product> products) {
-        System.out.println(products);
-        cartItems.add(Utility.getProductByPID(pid, products));
+    public void addProduct(Product product) {
+        cartItems.add(product);
     }
 
-    public void removeProduct(int pid, List<Product> products) {
-        cartItems.remove(Utility.getProductByPID(pid, products));
+    public void removeProduct(Product product) {
+        cartItems.remove(product);
     }
 
     public void displayItems() {
         Utility.displayItems(cartItems);
+    }
+
+    public void empty() {
+        this.cartItems.clear();
     }
 }

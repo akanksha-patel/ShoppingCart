@@ -20,6 +20,11 @@ public class Product {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "product id- "+pid+"  product name- "+name+"  quantity- "+stock+"  price- "+price;
+    }
+
     public Integer getPid() {
         return pid;
     }

@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Menu {
     List<Product> products = new Products().getProducts();
-    Cart cart;
+    Cart cart = new Cart();
     private int ch;
 
     public void mainScreen() {
@@ -61,10 +61,12 @@ public class Menu {
     }
 
     private void emptyCart() {
+        cart.empty();
     }
 
     private void removeProductFromCart(int pid, List<Product> products) {
-        cart.removeProduct(pid, products);
+        Product prod = Utility.getProductByPID(pid, products);
+        cart.removeProduct(prod);
     }
 
     private void displayCartItems() {
@@ -72,8 +74,15 @@ public class Menu {
     }
 
     private void addProductToCart(int pid) {
-        System.out.println(this.products);
-        cart.addProduct(pid, this.products);
+        Product prod = Utility.getProductByPID(pid, products);
+        sellItem(prod);
+        cart.addProduct(prod);
+    }
+
+    private void sellItem(Product prod) {
+        if (prod.getStock() < 0)
+            throw new OutOfStockException("Product is Out OF Stock");
+        prod.setStock(prod.getStock()-1);
     }
 
     private int getUserInput() {

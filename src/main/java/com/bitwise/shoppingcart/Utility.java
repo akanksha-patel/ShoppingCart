@@ -14,6 +14,7 @@ public class Utility {
             System.out.println(prod.getPrice());
         }
         System.out.println();
+        System.out.println();
     }
 
     public static Product getProductByPID(int pid, List<Product> products) {
